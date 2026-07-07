@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, FileType, Monitor, Shield } from 'lucide-react';
 import SectionHeading from '../ui/SectionHeading';
@@ -6,6 +6,7 @@ import SearchInput from '../ui/SearchInput';
 import Badge from '../ui/Badge';
 import products from '../../data/products';
 import { createProductWhatsAppLink } from '../../utils/whatsapp';
+import { trackCTA } from '../../utils/analytics';
 
 const filterCategories = ['Semua', '2D Asset', 'UI Kit', 'Icon Pack', 'Background', 'Sound Effect', 'Game Template'];
 
@@ -19,6 +20,15 @@ const statusConfig = {
 export default function ProductSection() {
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState('Semua');
+  const searchTimeout = useRef(null);
+
+  useEffect(() => {
+    if (search.length > 2) {
+      clearTimeout(searchTimeout.current);
+      searchTimeout.current = setTimeout(() => trackCTA('search_asset', search), 500);
+    }
+    return () => clearTimeout(searchTimeout.current);
+  }, [search]);
 
   const filteredProducts = useMemo(() => {
     return products.filter((p) => {
@@ -49,7 +59,7 @@ export default function ProductSection() {
           {filterCategories.map((cat) => (
             <motion.button
               key={cat}
-              onClick={() => setActiveCategory(cat)}
+              onClick={() => { setActiveCategory(cat); trackCTA('select_category', cat); }}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer ${
                 activeCategory === cat
                   ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-glow-sm'
@@ -124,6 +134,7 @@ export default function ProductSection() {
                       href={createProductWhatsAppLink(product.name)}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => trackCTA('contact_whatsapp', product.name)}
                       className="btn-secondary w-full flex items-center justify-center gap-2 text-sm py-2.5"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}

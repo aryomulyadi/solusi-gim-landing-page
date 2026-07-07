@@ -4,6 +4,7 @@ import SectionHeading from '../ui/SectionHeading';
 import Button from '../ui/Button';
 import bundles from '../../data/bundles';
 import { createBundleWhatsAppLink } from '../../utils/whatsapp';
+import { trackCTA } from '../../utils/analytics';
 
 export default function BundleSection() {
   return (
@@ -70,6 +71,7 @@ export default function BundleSection() {
                   href={createBundleWhatsAppLink(bundle.name)}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackCTA('select_bundle', bundle.name)}
                   className="w-full justify-center"
                   aria-label={`Pilih ${bundle.name} via WhatsApp`}
                 >

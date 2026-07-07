@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, MessageSquare } from 'lucide-react';
 import Button from '../ui/Button';
 import { createConsultationWhatsAppLink } from '../../utils/whatsapp';
+import { trackCTA } from '../../utils/analytics';
 
 export default function FinalCTASection() {
   return (
@@ -29,7 +30,7 @@ export default function FinalCTASection() {
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
-            <Button variant="primary" size="lg" href="#produk" icon={ArrowRight}>
+            <Button variant="primary" size="lg" href="#produk" icon={ArrowRight} onClick={() => trackCTA('view_catalog', 'final_cta_lihat_katalog')}>
               Lihat Katalog Sekarang
             </Button>
             <Button
@@ -38,6 +39,7 @@ export default function FinalCTASection() {
               href={createConsultationWhatsAppLink()}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackCTA('contact_whatsapp', 'final_cta_konsultasi')}
               icon={MessageSquare}
             >
               Konsultasi via WhatsApp

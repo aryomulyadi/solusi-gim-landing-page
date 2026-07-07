@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Download, Sparkles, Layers, Gamepad2, Zap } from 'lucide-react';
 import Button from '../ui/Button';
+import { trackCTA } from '../../utils/analytics';
 
 const trustStats = [
   { value: '500+', label: 'Asset Siap Pakai', icon: <Layers className="w-5 h-5" /> },
@@ -46,10 +47,10 @@ export default function HeroSection() {
             </p>
 
             <div className="flex flex-wrap gap-4 mb-12">
-              <Button variant="primary" size="lg" href="#produk" icon={ArrowRight}>
+              <Button variant="primary" size="lg" href="#produk" icon={ArrowRight} onClick={() => trackCTA('view_catalog', 'hero_lihat_katalog')}>
                 Lihat Katalog Aset
               </Button>
-              <Button variant="secondary" size="lg" href="#lead-magnet" icon={Download}>
+              <Button variant="secondary" size="lg" href="#lead-magnet" icon={Download} onClick={() => trackCTA('download_asset', 'hero_download_gratis')}>
                 Download Aset Gratis
               </Button>
             </div>

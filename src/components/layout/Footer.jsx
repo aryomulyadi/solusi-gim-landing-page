@@ -1,5 +1,6 @@
 import { Gamepad2, ArrowUp, Mail, Phone, MapPin } from 'lucide-react';
 import { WA_BASE_URL } from '../../utils/whatsapp';
+import { trackCTA } from '../../utils/analytics';
 
 const footerNavLinks = [
   { label: 'Beranda', href: '#beranda' },
@@ -102,6 +103,7 @@ export default function Footer() {
                   href={WA_BASE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackCTA('contact_whatsapp', 'footer_wa')}
                   className="flex items-center gap-2 text-slate-500 hover:text-cyan-400 text-sm transition-colors duration-300"
                 >
                   <Phone className="w-4 h-4" />

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Download, Mail, Gift, CheckCircle } from 'lucide-react';
 import Button from '../ui/Button';
+import { trackEvent } from '../../utils/analytics';
 
 export default function LeadMagnetSection() {
   const [email, setEmail] = useState('');
@@ -33,6 +34,7 @@ export default function LeadMagnetSection() {
     //   TEMPLATE_ID: 'your_emailjs_template_id'
     //   PUBLIC_KEY: 'your_emailjs_public_key'
     setSubmitted(true);
+    trackEvent('lead_submit', { email });
   };
 
   return (

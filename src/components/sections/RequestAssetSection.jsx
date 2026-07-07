@@ -3,6 +3,7 @@ import { MessageSquare, FileImage, Monitor, Calendar, Send } from 'lucide-react'
 import SectionHeading from '../ui/SectionHeading';
 import Button from '../ui/Button';
 import { createCustomRequestWhatsAppLink } from '../../utils/whatsapp';
+import { trackCTA } from '../../utils/analytics';
 
 const requestInfo = [
   { icon: FileImage, label: 'Jenis aset yang dibutuhkan', example: 'Contoh: sprite karakter, UI kit, icon pack' },
@@ -80,6 +81,7 @@ export default function RequestAssetSection() {
                   href={createCustomRequestWhatsAppLink()}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackCTA('request_asset', 'chat_whatsapp')}
                   icon={MessageSquare}
                 >
                   Chat WhatsApp
