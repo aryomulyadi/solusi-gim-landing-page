@@ -1,5 +1,6 @@
 import { Gamepad2, ArrowUp, Mail, Phone, MapPin } from 'lucide-react';
 import { WA_BASE_URL } from '../../utils/whatsapp';
+import ContributorSection from '../sections/ContributorSection';
 
 const footerNavLinks = [
   { label: 'Beranda', href: '#beranda' },
@@ -120,6 +121,11 @@ export default function Footer() {
             </ul>
           </div>
         </div>
+      </div>
+
+      {/* Divider + Tim Pengembang */}
+      <div className="border-t border-slate-800/50">
+        <ContributorSection />
       </div>
 
       {/* Bottom bar */}

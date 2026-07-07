@@ -12,7 +12,6 @@ import TestimonialSection from './components/sections/TestimonialSection';
 import LeadMagnetSection from './components/sections/LeadMagnetSection';
 import FAQSection from './components/sections/FAQSection';
 import RequestAssetSection from './components/sections/RequestAssetSection';
-import ContributorSection from './components/sections/ContributorSection';
 import FinalCTASection from './components/sections/FinalCTASection';
 
 export default function App() {
@@ -32,7 +31,6 @@ export default function App() {
         <LeadMagnetSection />
         <FAQSection />
         <RequestAssetSection />
-        <ContributorSection />
         <FinalCTASection />
       </main>
       <Footer />
