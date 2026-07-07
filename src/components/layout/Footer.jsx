@@ -1,6 +1,5 @@
 import { Gamepad2, ArrowUp, Mail, Phone, MapPin } from 'lucide-react';
 import { WA_BASE_URL } from '../../utils/whatsapp';
-import ContributorSection from '../sections/ContributorSection';
 
 const footerNavLinks = [
   { label: 'Beranda', href: '#beranda' },
@@ -11,6 +10,12 @@ const footerNavLinks = [
   { label: 'Testimoni', href: '#testimoni' },
   { label: 'FAQ', href: '#faq' },
   { label: 'Kontributor', href: '#contributors' },
+];
+
+const contributors = [
+  { name: 'Rifqi Aryo Mulyadi', nim: '23.11.5646', avatar: '👨‍💻' },
+  { name: 'Zakki Maulana', nim: '23.11.5686', avatar: '👨‍💻' },
+  { name: 'Raditya M. W. H', nim: '23.11.5668', avatar: '👨‍💻' },
 ];
 
 const categoryLinks = [
@@ -123,9 +128,21 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Divider + Tim Pengembang */}
-      <div className="border-t border-slate-800/50">
-        <ContributorSection />
+      {/* Tim Pengembang */}
+      <div className="border-t border-slate-800/50" id="contributors">
+        <div className="section-container py-6">
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+            {contributors.map((person) => (
+              <div key={person.nim} className="flex items-center gap-2.5">
+                <span className="text-lg">{person.avatar}</span>
+                <div>
+                  <p className="text-slate-400 text-sm font-medium leading-tight">{person.name}</p>
+                  <p className="text-slate-600 text-xs leading-tight">NIM: {person.nim}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Bottom bar */}
